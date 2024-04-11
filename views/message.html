@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+</head>
+<body>
+    <form onsubmit="sendMessage(event)">
+        <input type="text" name="message" placeholder="Enter your message">
+        <button type="submit" >Send</button>
+    </form>
+    <script type="text/javascript" >
+        const user=localStorage.getItem("username");
+        function sendMessage(event){
+           try{ fetch('https://localhost:4000/message',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user:user,
+                    message: event.target.message.value
+                })
+            })}catch(event){ 
+                console.error(error)
+             }
+        }
+    </script>
+
+   
+</body>
+</html>
